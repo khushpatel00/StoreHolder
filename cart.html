@@ -14,10 +14,10 @@
 
 <body class="bg-white">
     <header class="bg-amber-50 flex justify-between items-center px-5 w-[98vw] mx-auto h-[10vh] rounded-b-2xl">
-        <p class="text-3xl montserrat">FakeStore</p>
+        <p class="text-3xl montserrat cursor-pointer" onclick="window.location.href='index.html'">FakeStore</p>
         <div class="flex gap-x-2">
             <a href="cart.html">Cart</a>
-            <a href="login.html">Login</a>
+            <a class="cursor-not-allowed">Login</a>
         </div>
     </header>
     <div class="mt-10 mb-5">
@@ -29,8 +29,14 @@
 
             <div class="w-[40vw] h-[60vh] bg-green-50">
                 <h1 class="font-semibold text-3xl montserrat ms-5 mt-5">Checkout.</h1>
-                <div id="checkout">
-
+                <div id="checkout" class="flex flex-col h-[50vh] justify-center">
+                    <div class="flex justify-between px-5 w-full">
+                        <h3 class="text-lg font-semibold">Subtotal: </h3>
+                        <span id="subtotal" class="font-semibold text-lg">$654</span>
+                    </div>
+                    <span class="text-center mt-10">
+                        Shipping, discounts, will be calculated at checkout.
+                    </span>
                 </div>
             </div>
         </div>

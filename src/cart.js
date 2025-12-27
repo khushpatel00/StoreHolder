@@ -2,8 +2,9 @@ cart = document.querySelector('#cartparent');
 
 function refreshcart() {
     cartitems = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : []
-    console.log(cartitems)
+    // console.log(cartitems)
     cart.innerHTML = '';
+    subtotal = 0;
     for (const singlecartitem of cartitems) {
         cart.innerHTML += `
             <div class="w-full relative flex items-center border-b-2 mb-3">
@@ -26,12 +27,17 @@ function refreshcart() {
                     </div>
                 </div>
             </div>`
-    }
+            subtotal += singlecartitem.price * singlecartitem.quantity
+        }
+        // console.log(subtotal)
+        subtotal =  Math.round(subtotal*100)/100;
+        document.querySelector('#subtotal').innerHTML = `$${subtotal}`
     if(cart.innerHTML == ''){
         cart.innerHTML = `<h1 class="text-3xl font-light montserrat text-center">Your cart is empty!</h1>`
         cart.classList.add('flex', 'justify-center','items-center');
     }
     else cart.classList.remove('flex', 'justify-center','items-center');
+
 }
 
 function cartQuantity(action, id) {
@@ -54,7 +60,7 @@ function cartQuantity(action, id) {
             return item;
         });
     }
-    console.log(localStorageCartItems)
+    // console.log(localStorageCartItems)
     localStorage.setItem('cartitems', JSON.stringify(localStorageCartItems))
     refreshcart();
 }
@@ -62,7 +68,7 @@ function cartQuantity(action, id) {
 function deletecartitem (id) {
     localStorageCartItems = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : []
     localStorageCartItems = localStorageCartItems.filter(item => item.id != id);
-    console.log(localStorageCartItems)
+    // console.log(localStorageCartItems)
     localStorage.setItem('cartitems', JSON.stringify(localStorageCartItems))
     refreshcart();
 }
